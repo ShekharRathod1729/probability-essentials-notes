@@ -1,4 +1,6 @@
-\documentclass[12pt]{extarticle}
+\documentclass[12pt]{book}
+
+% Packages
 
 \usepackage[
     left=1in,
@@ -11,8 +13,7 @@
 \usepackage{amsfonts,amsthm,amssymb,mathrsfs,amsmath}
 \usepackage{microtype,xcolor,fontspec}
 
-% Optional font
-% \setmainfont{TeX Gyre Pagella}
+% Environments
 
 \newcounter{problem}
 
@@ -39,249 +40,35 @@
     \par\medskip
 }
 
+\raggedbottom
+
+% Commands
+
 \newcommand{\Po}{\mathscr{P}}
 \newcommand{\sub}{\subseteq}
 \newcommand{\G}{\mathscr{G}}
 \newcommand{\A}{\mathscr{A}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\C}{\mathscr{C}}
 \newcommand{\F}{\mathscr{F}}
 \newcommand{\E}{\mathscr{E}}
 \newcommand{\sm}{\setminus}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
 
-\title{Chapter 2}
+\title{Probability Essentials --- Solutions}
 \author{Shekhar Rathod}
 \date{}
 
 \begin{document}
 
+\frontmatter
 \maketitle
+\tableofcontents
 
-\bigskip
+\mainmatter
+\setcounter{chapter}{1}
 
-\begin{problem}
-Let $\Omega$ be a finite set. Show that the set of all subsets of $\Omega$, $\Po(\Omega)$, is also finite and that it is a $\sigma$-algebra.
-\end{problem}
-
-\begin{solution}
-Since $\Omega$ is finite, let $\Omega = \{ \omega_1, ..., \omega_n\}$. Any subset of $\Omega$ can be formed by considering every element of $\Omega$ and either including it or excluding it in the subset. That is, for every element $\omega_i$, $i = 1, ..., n$, we either include $\omega_i$ in the subset or exclude it, and so there are exactly two choices for every element. Therefore, the total number of possible subsets is $2^n$, i.e., $\Po(\Omega)$ is also finite.
-
-We now show that $\Po(\Omega)$ is a $\sigma$-algebra. Since $\varnothing, \Omega \sub \Omega$, we have that $\varnothing, \Omega \in \Po(\Omega)$. Also, if $A \in \Po(\Omega)$, then $A \sub \Omega$ and so $A^c = \Omega \setminus A \sub \Omega$, that is, $A^c \in \Po(\Omega)$. Lastly, let $\{A_j\}_{j \geq 1}$ be a sequence of subsets of $\Omega$. Then, for any $x \in \bigcup_{j \geq 1} A_j$, there exists some $j_0$ such that $x \in A_{j_0}$. But since $A_{j_0} \sub \Omega$, $x \in \Omega$, and so $\bigcup_{j \geq 1} A_j \sub \Omega$. Thus, $\bigcup_{j \geq 1} A_j \in \Po(\Omega)$.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-Let $(\mathscr{G}_\alpha)_{\alpha \in A}$ be an arbitrary family of $\sigma$-algebras defined on an abstract space $\Omega$. Show that $\mathscr{H} = \bigcap_{\alpha \in A} \mathscr{G}_\alpha$ is also a $\sigma$-algebra.
-\end{problem}
-
-\begin{solution}
-Since $\G_\alpha$ is a $\sigma$-algebra for all $\alpha \in A$, $\varnothing, \Omega \in \G_\alpha$, and so $\varnothing, \Omega \in \bigcap_{\alpha \in A} \G_\alpha = \mathscr{H}$. 
-
-Let $A \in \mathscr{H}$. Then, for all $\alpha \in A$, $A \in \G_\alpha$, and so $A^c \in \G_\alpha$, for $\G_\alpha$ is a $\sigma$-algebra. Hence, $A^c \in \bigcap_{\alpha \in A} \G_\alpha = \mathscr{H}$ .
-
-Lastly, let $(A_j)_{j \geq 1}$ be a sequence of sets in $\mathscr{H}$. Then, for all $j \geq 1$, $A_j \in \G_\alpha$ for all $\alpha \in A$. Since $\G_\alpha$ is a $\sigma$-algebra, it is closed under countable unions. Hence, $\bigcup_{j \geq 1} A_j \in \G_{\alpha}$ for all $\alpha \in A$, and therefore $\bigcup_{j \geq 1} A_j \in \bigcap_{\alpha \in A} \G_\alpha = \mathscr{H}$. Thus, $\mathscr{H}$ is a $\sigma$-algebra.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    Let $(A_n)_{n \geq 1}$ be a sequence of sets. Show that (De Morgan's Laws)
-    \begin{enumerate}
-        \item $\left(\bigcup_{n \geq 1} A_n\right)^c = \bigcap_{n \geq 1} A_n^c$
-        \item $\left(\bigcap_{n \geq 1} A_n \right)^c = \bigcup_{n \geq 1} A_n^c$.
-    \end{enumerate}
-\end{problem}
-
-\begin{solution}
-    \begin{enumerate}
-        \item Let $x \in \left(\bigcup_{n \geq 1} A_n\right)^c$. Then, $x \not\in \bigcup_{n \geq 1} A_n$; that is, for all $n \in \mathbb{N}$, $x \not \in A_n$. Hence, $x \in A_n^c$ for all $n \in \mathbb{N}$, and so $x \in \bigcap_{n \geq 1} A_n^c$. 
-        
-        Now suppose $x \in \bigcap_{n \geq 1} A_n^c$. Then, for all $x \in \mathbb{N}$, $x \in A_n^c$, that is, $x \not\in A_n$ for any $n \in \mathbb{N}$. Therefore, $x \not\in \bigcup_{n \geq 1} A_n$, and so $x \in \left( \bigcup_{n \geq 1} A_n \right)^c$.
-        
-        \item Let $x \in \left( \bigcap_{n \geq 1} A_n \right)^c$. Then, $x \not\in \bigcap_{n \geq 1} A_n$, that is, there exists some $n_0 \in \mathbb{N}$ such that $x \not\in A_{n_0}$. Therefore, $x \in A_{n_0}^c$, and so $x \in \bigcup _{n \geq 1} A_n^c$.
-
-        Now suppose $x \in \bigcup_{n \geq 1} A_n^c$. Then, for some $n_0 \in \mathbb{N}$, $x \in A_{n_0}^c$, that is, $x \not\in A_{n_0}$. Hence, $x \not\in \bigcap_{n \geq 1} A_n$, and so $x \in \left( \bigcap_{n \geq 1} A_n \right)^c$.
-    \end{enumerate}
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    Let $\A$ be a $\sigma$-algebra and $(A_n)_{n \geq 1}$ a sequence of events in $\A$. Show that
-    \begin{enumerate}
-        \item $ \liminf_{n \to \infty} A_n \in \A$;
-        \item $\limsup_{n \to \infty} A_n \in \A$; and
-        \item $\liminf_{n \to \infty} A_n \sub \limsup_{n \to \infty} A_n$.
-    \end{enumerate}
-\end{problem}
-
-\begin{solution}
-    Since
-    \[ \limsup_{n \to \infty} A_n = \bigcap_{n \geq 1} \bigcup_{m \geq n} A_m \]
-    and
-    \[ \liminf_{n \to \infty} A_n = \bigcup_{n \geq 1} \bigcap_{m \geq n} A_m, \]
-    and since a $\sigma$-algebra is closed under countable unions and countable intersections, $\limsup_{n \to \infty} A_n \in \A$ and $ \liminf_{n \to \infty} A_n \in \A$.
-
-    Let $x \in \liminf_{n \to \infty} A_n = \bigcup_{n \geq 1} \bigcap_{m \geq n} A_m$. Then, for some $n_0 \in \mathbb{N}$, $x \in \bigcap_{m \geq n_0} A_m$. Hence, for all $m \geq n_0$, $x \in A_m$. But then, $x \in \bigcup_{m \geq n} A_m$ for all $n \geq 1$, and therefore $x \in \bigcap_{n \geq 1}\bigcup_{m \geq n} A_m = \limsup_{n \to \infty}A_n$, as required. 
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    Let $(A_n)_{n \geq 1}$ be a sequence of sets. Show that
-    \[ \limsup_{n \to \infty} 1_{A_n} -  \liminf_{n \to \infty} 1_{A_n} = 1_{\{\limsup_n A_n \setminus \liminf_n A_n\}}\]
-    (where $A \sm B = A \cap B^c$ whenever $B \sub A$).
-\end{problem}
-
-\begin{solution}
-    Since $\liminf_{n} 1_{A_n} = \lim_{n \to \infty} \inf \{ 1_{A_n}, 1_{A_{n + 1}}, ... \}$, it is either $1$ or $0$. Consider the case when it is $1$. Then, $\limsup_n 1_{A_n} = \lim_{n \to \infty} \sup \{ 1_{A_n}, 1_{A_{n + 1}}, ... \} = 1$ since for any $n$, $\inf \{ 1_{A_n}, 1_{A_{n + 1}}, ... \} \leq \sup \{ 1_{A_n}, 1_{A_{n + 1}}, ... \}$. Let $x \in \Omega$, where $\Omega$ is the abstract space under consideration. The fact that $\liminf_{n} 1_{A_n} = 1$ implies that for large enough $n$, $1_{A_n}(x) = 1$, that is, $x \in A_n$. Hence, $x \in \bigcup_{n \geq 1} \bigcap_{m \geq n} A_m$, i.e., $x \in \liminf_n A_n$, and by Problem 4, $x \in \limsup_n A_n$. Therefore, $x \not\in \limsup_n A_n \sm \liminf_n A_n$,  and so $1_{\{\limsup_n A_n \setminus \liminf_n A_n\}}(x) = 0 = \limsup_n 1_{A_n}(x) - \liminf_n 1_{A_n}(x)$.
-
-    Now suppose that $\liminf_n 1_{A_n} = 0 $. Then, $\limsup_n 1_{A_n}$ is either $0$ or $1$. If it is $0$, then $\lim_{n \to \infty} \sup \{ 1_{A_n}, 1_{A_{n + 1}},... \} = 0$, that is, for large enough $n$, $1_{A_n}(x) = 0$, and so $x \not\in A_n$. Hence, $x$ is only in finitely many $A_n$, and so $x \not\in \limsup_n A_n$, implying that $x \not\in \limsup_n A_n \setminus \liminf_n A_n$, i.e., $1_{\{\limsup_n A_n \setminus \liminf_n A_n\}}(x) = 0 = \limsup_{n} 1_{A_n}(x) -  \liminf_{n} 1_{A_n}(x)$.
-
-    If $\limsup_n 1_{A_n} = 1$ and $\liminf_n 1_{A_n} = 0$, then $\lim_{n \to \infty} \sup\{1_{A_n}, 1_{A_{n + 1}}, ... \} = 1$, and so, for any $n \in \mathbb{N}$, there exists some $N \geq n$ such that $x \in A_N$. Thus, $x \in \bigcap_{n \geq 1} \bigcup_{m \geq n} A_m = \limsup_n A_n$. However, $\liminf_n 1_{A_n} = 0$, i.e., $\lim_{n \to \infty} \inf \{1_{A_n}, 1_{A_{n + 1}},...\} = 0$, and so for any $n \in \mathbb{N}$, there exists $N' \geq n$ such that $x \not\in A_{N'}$. Hence, $x \not \in \bigcup_{n \geq 1} \bigcap_{m \geq n} A_m = \liminf_n A_n$, that is, $x \in \limsup_nA_n \sm \liminf_n A_n$, and so $1_{\{\limsup_n A_n \setminus \liminf_n A_n\}}(x) = 1 = \limsup_n1_{A_n}(x) - \liminf_n1_{A_n}(x)$, which concludes the proof.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    Let $\A$ be a $\sigma$-algebra of subsets of $\Omega$ and let $B \in \A$. Show that $\F = \{ A \cap B : A \in \A\}$ is a $\sigma$-algebra of subsets of $B$. Is it still true when $B$ is a subset of $\Omega$ that does not belong to $\A$?
-\end{problem}
-
-\begin{solution}
-    We first observe that $A \cap B \sub B$ and so $\F$ is a collection of subsets of $B$. Since $\varnothing = \varnothing \cap B$ and $\varnothing \in \A$, for $\A$ is a $\sigma$-algebra, we have that $\varnothing \in \F$ . Similarly, $B = \Omega \cap B$ and $\Omega \in \A$, so $B \in \F$.
-    
-    We now show that $\F$ is closed under complements. Let $E \in \F$. Then, there exists some $A_0 \in \A$ such that $E = A_0 \cap B$, and so the complement of $E$ in $B$ is given by $B \setminus E = B \cap E^c = B \cap (A_0 \cap B)^c = B \cap (A_0^c \cup B^c) = B \cap A_0^c$. Now, $A_0 \in \A$ and so $A_0^c \in \A$. Hence, $B \setminus E \in \F$.
-    
-    Lastly, we show that $\F$ is closed under countable unions. Let $(A_n)_{n \geq 1}$ be a sequence of sets in $\F$. Then, for every $n \geq 1$, there exists some $E_n \in \A$ such that $A_n = E_n \cap B$. Therefore, $\bigcup_{n \geq 1} A_n = \bigcup_{n \geq 1} (E_n \cap B) = B \cap \bigcup_{n \geq 1} E_n$, and since $\bigcup_{n \geq 1} E_n \in \A$, we have that $\left( \bigcup_{n \geq 1} E_n \right) \cap B \in \F$, as required, and so $\F$ is a $\sigma$-algebra. 
-
-    Since the proof above does not depend on $B$ being an element of $\A$, the assertion is also true when $B \sub \Omega$ is not an element of $\A$.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    Let $f$ be a function mapping $\Omega$ to another space $E$ with a $\sigma$-algebra $\mathscr{E}$. Let $\A = \{ A \sub \Omega: \text{there exists $B \in \mathscr{E}$ with $A = f^{-1}(B)$} \}$. Show that $\A$ is a $\sigma$-algebra on $\Omega$.
-\end{problem}
-
-\begin{solution}
-    We first show that $\varnothing, \Omega$ are in $\A$. Since $\mathscr{E}$ is a $\sigma$-algebra, $\varnothing \in \mathscr{E}$. Also, $f^{-1}(\varnothing) = \{ \omega \in \Omega: f(\omega) \in \varnothing \} = \varnothing$ and so $\varnothing \in \A$. Further, $f^{-1}(E) = \Omega$ and $E \in \mathscr{E}$, that is, $\Omega \in \A$.
-
-    Now, we show that $\A$ is closed under complements. Let $A \in \A$. Then, there exists $B \in \E$ such that $A = f^{-1}(B) = \{ \omega \in \Omega: f(\omega) \in B \}$, and so $A^c = \{ \omega \in \Omega: f(\omega) \not\in B \}$, which is the same as $\{ \omega \in \Omega: f(\omega) \in B^c \} = f^{-1}(B^c)$, but $B^c \in \E$ since $B \in E$, and therefore $A^c \in \A$.
-
-    Lastly, we show that $\A$ is closed under countable unions. Let $(A_n)_{n \geq 1}$ be a sequence of sets in $\A$. Then, for every $n \geq 1$, there exists $B_n \in \E$ such that $A_n = f^{-1}(B_n) = \{ \omega \in \Omega: f(\omega) \in B_n \}$, and so $\bigcup_{n \geq 1} A_n = \{ \omega \in \Omega : f(\omega) \in \bigcup_{n \geq 1} B_n \} = f^{-1}\left( \bigcup_{n \geq 1} B_n \right)$, and since $\bigcup_{n \geq 1} B_n \in \E$, we have $\bigcup_{n \geq 1} A_n \in \A$, as desired. 
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    Let $f: \mathbb{R} \to \mathbb{R}$ be a continuous function, and let $\A = \{ A \sub \mathbb{R}: \exists B \in \mathscr{B} \text{ with } A = f^{-1}(B) \}$ where $\mathscr{B}$ are the Borel subsets of the range space $\mathbb{R}$. Show that $\A \sub \mathscr{B}$, the Borel subsets of the domain space $\mathbb{R}$.
-\end{problem}
-
-%====================================================================================================
-
-\textcolor{red}{\textit{For problems 9 to 15, we assume a fixed abstract space $\Omega$, a $\sigma$-algebra $\A$, and a Probability $P$ defined on $(\Omega, \A)$. The sets $A, B, A_i,$ etc... always belong to $\A$.}}
-
-\begin{problem}
-    For $A, B \in \A$ with $A \cap B = \varnothing$, show $P(A \cup B) = P(A) + P(B)$.
-\end{problem}
-
-\begin{solution}
-    $P$ is a Probability measure and therefore is finitely additive. Hence, $P(A \cup B) = P(A) + P(B)$.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    For $A, B \in \A$, show $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
-\end{problem}
-
-\begin{solution}
-    $A \cup B = A \cup (B \setminus A)$, and since $A$ and $B \setminus A$ are disjoint, $P(A \cup B) = P(A) +P(B \setminus A)$. Now, $B \setminus A = B \setminus (A \cap B)$, and since $A \cap B \sub B$, $P(B \setminus A) = P(B) - P(A \cap B)$. Thus, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    For $A \in \A$, show $P(A) = 1 - P(A^c)$.    
-\end{problem}
-
-\begin{solution}
-    Since $\Omega = A \cup A^c$, $P(\Omega) = P(A) + P(A^c)$, and so $P(A) = 1 - P(A^c)$.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    For $A, B \in \A$, show $P(A \cap B^c) = P(A) - P(A \cap B)$.
-\end{problem}
-
-\begin{solution}
-    $A \cap B^c = A \setminus (A \cap B)$ and $A \cap B \sub A$. Therefore, $P(A \cap B^c) = P(A \setminus (A \cap B)) = P(A) - P(A \cap B)$.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    Let $A_1,..., A_n$ be given events. Show that
-    \[ P\left(\bigcup_{i = 1}^n A_i \right) = \sum_{i} P(A_i) - \sum_{i < j} P(A_i \cap A_j) + \sum_{i < j < k} P(A_i \cap A_j \cap A_k) - ... + (-1)^{n + 1} P(A_1 \cap A_2 \cap ... \cap A_n)\]
-    where (for example) $\sum_{i < j}$ means to sum over all ordered pairs $(i, j)$ with $i < j$.
-\end{problem}
-
-\begin{solution}
-    The statement is trivial for $n = 1$. Suppose it is true for $n - 1$. Then, 
-    \begin{align*}
-        P \left( \bigcup_{i = 1}^n A_i \right) &= P \left( \bigcup_{i = 1}^{n - 1} A_i \cup A_n \right) \\
-        &= P \left( \bigcup_{i = 1}^{n - 1} A_i \right) + P(A_n) - P \left( \bigcup_{i = 1}^{n - 1} A_i \cap A_n \right).
-    \end{align*}
-
-    Now, $P \left( \bigcup_{i = 1}^{n - 1} A_i \right) = \sum_{i = 1}^{n - 1} P(A_i) - \sum_{1 \leq i < j \leq n - 1} P(A_i \cap A_j) +... + (-1)^n P(A_1 \cap ... \cap A_{n - 1})$. Further, let $B_i = A_i \cap A_n$. Then, 
-    
-    \begin{align*}
-        P \left( \bigcup_{i = 1}^{n - 1} A_i \cap A_n \right) &= P \left( \bigcup_{i = 1}^{n - 1} B_i \right) \\
-        &= \sum_{i = 1}^{n - 1} P(B_i) - \sum_{1 \leq i < j \leq n - 1} P(B_i \cap B_j) +... \\ &  \quad\quad + (-1)^n P(B_1 \cap ... \cap B_{n - 1}) \\
-        &= \sum_{i = 1}^{n - 1} P(A_i \cap A_n) -  \sum_{1 \leq i < j \leq n - 1} P(A_i \cap A_j \cap A_n) + ... \\ & \quad\quad + (-1)^n P(A_1 \cap ... \cap A_n).
-    \end{align*}
-
-    Observe that $\sum_{1 \leq i < j \leq n - 1} P(A_i \cap A_j)$ from $P \left( \bigcup_{i = 1}^{n - 1} A_i \right)$and $\sum_{i = 1}^{n - 1} P(A_i \cap A_n)$ from $P \left( \bigcup_{i = 1}^{n - 1} B_i \right)$ add to form $\sum_{1 \leq i < j \leq n}P(A_i \cap A_j)$, and so on, as required.
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-    Suppose $P(A) = \frac{3}{4}$ and $P(B) = \frac{1}{3}$. Show that always $\frac{1}{12} \leq P(A \cap B) \leq \frac{1}{3}$.
-\end{problem}
-
-%====================================================================================================
-
-\begin{problem}
-    (Subadditivity) Let $A_i \in \A$ be a sequence of events. Show that 
-    \[ P\left(\bigcup_{i = 1}^n A_i\right) \leq \sum_{i = 1}^{n} P(A_i),\]
-    each $n$, and also
-    \[P\left(\bigcup_{i \geq 1} A_i\right) \leq \sum_{i \geq 1} P(A_i).\]
-\end{problem}
-
-\begin{solution}
-        Define $B_1 := A_1$, $B_2 = A_2 \sm A_1$, $B_3 = A_3 \sm (A_1 \cup A_2)$,..., $B_k = A_k \sm \bigcup_{j = 1}^{k - 1}A_j$. Then, $(B_i)_{i = 1}^n$ is a sequence of pairwise disjoint sets such that $\bigsqcup_{i = 1}^n B_i = \bigcup_{i = 1}^{n} A_i$. Since $P$ is a probability measure, it is finitely additive and so $ P \left( \bigcup_{i = 1}^{n} A_i \right) = P\left( \bigsqcup_{i = 1}^n B_i \right) = \sum_{i = 1}^n P(B_i)$, but $B_i \sub A_i$ for all $i = 1, 2, ..., n$, due to which $P(B_i) \leq P(A_i)$. Hence, $\sum_{i = 1}^n P(B_i) \leq \sum_{i = 1}^n P(A_i)$.
-
-        Similarly, using countable additivity instead of finite additivity gives
-        \[ P \left( \bigcup_{i \geq 1} A_i \right) = P \left( \bigsqcup_{i \geq 1} B_i \right) = \sum_{i \geq 1} P(B_i) \leq \sum_{i \geq 1} P(A_i).\]
-\end{solution}
-
-%====================================================================================================
-
-\begin{problem}
-Suppose that $\Omega$ is an infinite set (countable or not), and let $\A$ be the family of all subsets which are either finite or have a finite complement. Show that $\A$ is an algebra, but not a $\sigma$-algebra.
-\end{problem}
-
-\begin{solution}
-$\varnothing$ is a finite subset of $\Omega$ and so $\varnothing \in \Omega$. Further, $\Omega^c = \varnothing$, and so $\Omega \in \A$. 
-
-Let $A \in \A$. Then, either $A$ is finite or $A^c$ is finite. In the former case, $A^c \in \Omega$ since the complement of $A^c$ is $A$, which is finite; in the latter case, $A^c$ itself is finite and so $A^c \in \Omega$.
-
-Suppose $A_1, ..., A_n \in \A$. There are two possibilities: either $A_j$ is finite for all $j = 1, ..., n$ or at least one of the $A_j$'s is infinite. If all $A_j$'s are finite, then $\bigcup_{j = 1}^n A_j$ is also finite, since a finite union of finite sets is finite, and so $\bigcup_{j = 1}^n A_j \in \A$. Now, suppose $A_{j_0}$ is infinite, where $j_0 \in \{1, ..., n\}$. Then, since $A_{j_0} \in \A$, $A_{j_0}^c$ is finite. Consider $B = \bigcap_{j = 1}^n A_j^c$. Clearly, $B \sub \Omega$. Also, $B \sub A_{j_0}^c$, but since the latter set is finite, $B$ is also finite. Hence, $B \in \A$, and so $B^c \in \A$. But $B = \bigcap_{j = 1}^n A_j^c = (\bigcup_{j = 1}^nA_j)^c$ and therefore $B^c = \bigcup_{j = 1}^n A_j$, i.e., $\bigcup_{j = 1}^nA_j \in \A$. Thus, $\A$ is an algebra.
-
-To show that $\A$ is not a $\sigma$-algebra, we first consider the case where $\Omega$ is countably infinite. Let $\Omega = \{ \omega_1, \omega_2,...\}$. Define $A_j := \{ \omega_{2j}\}$ for all $j \geq 1$. Then, each $A_j$ is finite and so $A_j \in \A$ for all $j \geq 1$, but $\bigcup_{j \geq 1} A_j = \{ \omega_2, \omega_4, ...\}$, which in infinite. Further, $(\bigcup_{j \geq 1} A_j)^c = \{\omega_1, \omega_3,...\}$, which is also infinite, and so $\bigcup_{j \geq 1} A_j \not\in \A$. Hence, $\A$ is not a $\sigma$-algebra.
-
-If $\Omega$ is uncountably infinite, let $E = \{e_1, e_2, ...\}$ be a countably infinite subset of $\Omega$ (such a subset exists by the Axiom of Choice). Now, define $A_j := \{e_j\}$ for all $j \geq 1$. Each $A_j$ is finite and so $A_j \in \A$ for all $j \geq 1$, but $\bigcup_{j \geq 1} A_j = E$, which is infinite, and $E^c$ complement is also infinite. Therefore, $\bigcup_{j \geq 1} A_j \not\in \A$, and so $\A$ is not a $\sigma$-algebra.
-\end{solution}
+\input{ch2}
 
 \end{document}
