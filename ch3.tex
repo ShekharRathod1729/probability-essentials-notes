@@ -1,0 +1,43 @@
+\chapter{Conditional Probability and Independence}
+
+\textcolor{red}{\textit{In all exercises the probability space is fixed, and $A$, $B$, $A_n$, etc... are events.}}
+
+\begin{problem}
+  Show that if $A \cap B = \varnothing$, then $A$ and $B$ \textit{cannot} be independent unless $P(A) = 0$ or $P(B) = 0$.
+\end{problem}
+
+\begin{solution}
+  Suppose $P(A) = 0$ or $P(B) = 0$. Then, $P(A \cap B) = P(\varnothing) = 0 = P(A)P(B)$ and so $A$ and $B$ are independent. If neither $P(A)$ nor $P(B)$ is zero, then $P(A)P(B) \neq 0$, but $P(A \cap B) = 0$, and so $P(A \cap B) \neq P(A)P(B)$, i.e., $A$ and $B$ are not independent.
+\end{solution}
+
+%====================================================================================================
+
+\begin{problem}
+  Let $P(C) > 0$. Show that $P(A \cup B | C) = P(A | C) + P (B | C) - P(A \cap B | C)$.
+\end{problem}
+
+\begin{solution}
+  We have 
+  \begin{align*}
+  P(A \cup B | C) &= \frac{P((A \cup B) \cap C)}{P(C)} \\
+  &= \frac{P((A \cap C) \cup (B \cap C))}{P(C)} \\
+  &= \frac{P(A \cap C) + P(B \cap C) - P((A \cap C) \cap (B \cap C))}{P(C)} \\
+  &= \frac{P(A \cap C)}{P(C)} + \frac{P(B \cap C)}{P(C)} - \frac{P(A \cap B \cap C)}{P(C)} \\
+  &= P(A|C) + P(B|C) - P(A \cap B | C),
+  \end{align*}
+  as desired.
+\end{solution}
+
+%====================================================================================================
+
+\begin{problem}
+  Suppose $P(C) > 0$ and $A_1, ..., A_n$ are all pairwise disjoint. Show that 
+  \[ P\left( \bigcup_{i = 1}^n A_i | C \right) = \sum_{i = 1}^n P(A_i | C). \]
+\end{problem}
+
+\begin{solution}
+  Since $A_1, ..., A_n$ are all pairwise disjoint, we have
+  \begin{align*}
+  P \left( \bigsqcup_{i = 1}^n A_i | C \right) &= \frac{ 
+  \end{align*}
+\end{solution}
