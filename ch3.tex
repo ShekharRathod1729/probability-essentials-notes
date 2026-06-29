@@ -38,6 +38,10 @@
 \begin{solution}
   Since $A_1, ..., A_n$ are all pairwise disjoint, we have
   \begin{align*}
-  P \left( \bigsqcup_{i = 1}^n A_i | C \right) &= \frac{ 
+  P \left( \bigsqcup_{i = 1}^n A_i | C \right) &= \frac{P \left( \bigsqcup_{i = 1}^n (A_i \cap C) \right)}{P(C)} \\
+  &= \frac{\sum_{i = 1}^{n} P(A_i \cap C)}{P(C)} \\
+  &= \sum_{i = 1}^n \frac{P(A_i \cap C)}{P(C)} \\
+  &= \sum_{i = 1}^n P(A_i | C),
   \end{align*}
+  as desired.
 \end{solution}
