@@ -45,3 +45,35 @@
   \end{align*}
   as desired.
 \end{solution}
+
+%====================================================================================================
+
+\begin{problem}
+  Let $P(B) > 0$. Show that $P(A \cap B) = P(A | B)P(B)$.
+\end{problem}
+
+\begin{solution}
+  Since $P(B) > 0$, the conditional probability of $A$ given $B$, by definition, is given by $P(A | B) = P(A \cap B) / P(B)$, and so $P(A \cap B) = P(A | B) P(B)$.
+\end{solution}
+
+%====================================================================================================
+
+\begin{problem}
+  Let $0 < P(B) < 1$ and let $A$ be any event. Show
+  \[ P(A) = P(A | B) P(B) + P(A | B^c) P(B^c). \]
+\end{problem}
+
+\begin{solution}
+  Since $B$ and $B^c$ form a partition of the state space $\Omega$, by the Partition Equation, $P(A) = P(A | B) P(B) + P(A | B^c) P(B^c)$.
+\end{solution}
+
+%====================================================================================================
+
+\begin{problem}
+  Donated blood is screened for AIDS. Suppose the test has 99% accuracy, and that one in ten thousand people in your age group are HIV positive. The test has 5% false positive rating as well. Suppose the test screens you as positive. What is the probability you have AIDS? Is it 99%? (\textit{Hint}: 99% refers to $P$(test positive | you have AIDS). You want to find $P$(you have AIDS | test is positive).)
+\end{problem}
+
+\begin{solution}
+  Let $A$ denote the event that you have AIDS, and $T$ denote the event that the test is positive. Then, $P(A) = \frac{1}{10000}$, $P(T | A) = \frac{99}{100}$, and $P(T | A^c) = \frac{5}{100}$. We want to find $P(A | T)$. By Bayes' Theorem, $P(A | T) = \frac{P(T | A) P(A)}{P(T)}$, and by Problem 5,
+  \[ P(A | T) = \frac{P(T | A) P(A)}{P(T | A) P(A) + P(T | A^c) P(A^c)} = \frac{0.99 \cdot 0.0001}{0.99 \cdot 0.0001 + 0.05 \cdot 0.9999} \approx 0.00198. \]
+\end{solution}
